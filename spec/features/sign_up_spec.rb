@@ -6,7 +6,7 @@ RSpec.feature 'Sign up', type: :feature do
   sign_up_password_confirmation = '//*[@id="user_password_confirmation"]'
   sign_up_button_confirmation = '//*[@id="new_user"]/div[4]/input'
   sign_up_button = '/html/body/a[1]'
-  log_out_button = '/html/body/button/a'
+  log_out_button = '/html/body/nav/ul/li/form/input[2]'
 
   before :each do
     visit '/'
@@ -18,6 +18,7 @@ RSpec.feature 'Sign up', type: :feature do
     find(:xpath, sign_up_password).set('123456')
     find(:xpath, sign_up_password_confirmation).set('123456')
     find(:xpath, sign_up_button_confirmation).click
+    
     expect(page).to have_content('You are signed in as test@test.com')
     expect(page).not_to have_content 'Sign up'
   end
@@ -28,6 +29,7 @@ RSpec.feature 'Sign up', type: :feature do
     find(:xpath, sign_up_password).set('12345')
     find(:xpath, sign_up_password_confirmation).set('12345')
     find(:xpath, sign_up_button_confirmation).click
+    
     expect(page).not_to have_content('You are signed in as test@test.com')
     expect(page).to have_content( 'Password is too short (minimum is 6 characters)')
     expect(page).to have_content 'Sign up'
@@ -39,6 +41,7 @@ RSpec.feature 'Sign up', type: :feature do
     find(:xpath, sign_up_password).set('123456')
     find(:xpath, sign_up_password_confirmation).set('123456')
     find(:xpath, sign_up_button_confirmation).click
+    
     expect(page).not_to have_content('You are signed in as test@test.com')
     expect(page).to have_content('Email is invalid')
   end
@@ -57,6 +60,7 @@ RSpec.feature 'Sign up', type: :feature do
     find(:xpath, sign_up_password).set('123456')
     find(:xpath, sign_up_password_confirmation).set('123456')
     find(:xpath, sign_up_button_confirmation).click
+    
     expect(page).to have_content('Email has already been taken')
   end
 
@@ -66,6 +70,7 @@ RSpec.feature 'Sign up', type: :feature do
     find(:xpath, sign_up_password).set('123456')
     find(:xpath, sign_up_password_confirmation).set('123457')
     find(:xpath, sign_up_button_confirmation).click
+    
     expect(page).not_to have_content('You are signed in as test@test.com')
     expect(page).to have_content("Password confirmation doesn't match")
   end
@@ -76,6 +81,7 @@ RSpec.feature 'Sign up', type: :feature do
     find(:xpath, sign_up_password).set('123456')
     find(:xpath, sign_up_password_confirmation).set('123457')
     find(:xpath, sign_up_button_confirmation).click
+    
     expect(page).not_to have_content('You are signed in as test@test.com')
     expect(page).to have_content("Email is invalid Password confirmation doesn't match Password")
   end
@@ -86,6 +92,7 @@ RSpec.feature 'Sign up', type: :feature do
     find(:xpath, sign_up_password).set('123456')
     find(:xpath, sign_up_password_confirmation).set('123457')
     find(:xpath, sign_up_button_confirmation).click
+    
     expect(page).not_to have_content('You are signed in as test@test.com')
     expect(page).to have_content("Email is invalid Password confirmation doesn't match Password")
   end
