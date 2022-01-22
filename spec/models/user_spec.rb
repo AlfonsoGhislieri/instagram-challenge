@@ -5,6 +5,10 @@ RSpec.describe User, type: :model do
     @user = create(:user)
   end
 
+  describe 'associations' do
+    it { should have_many(:posts) }
+  end
+
   it "is valid with a valid username and password" do
     expect(@user).to be_valid
   end 
@@ -33,4 +37,5 @@ RSpec.describe User, type: :model do
     user = build(:user, email: 'test@gmail.com')
     expect(user).to_not be_valid
   end  
+
 end
