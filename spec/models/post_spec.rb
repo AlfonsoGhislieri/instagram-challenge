@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  it { is_expected.to be }
+
 
   it "not valid if post has neither a message or a image" do
     post = Post.new()
@@ -12,15 +12,14 @@ RSpec.describe Post, type: :model do
   it "not valid if just message" do
     post = Post.new(message: "This is my first post")
 
-    expect(post).to_not be_valid
-  end
-
-  it "message is less than 50 char" do
-    post = Post.new(message: "a" * 50)
-
     expect(post).to be_valid
   end
 
+  it "message is less than 50 char" do
+    post = Post.new(message: "a" * 49)
+
+    expect(post).to be_valid
+  end
 
   it "message is greater than 50 char" do
     post = Post.new(message: "a" * 51)

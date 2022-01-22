@@ -1,23 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject { described_class.new(
-    email: "test@test.com",
-    password: "123456",
-  )}
+  before do
+    @user = create(:user)
+  end
 
   it "is valid with a valid username and password" do
-    expect(subject).to be_valid
+    expect(@user).to be_valid
   end 
 
   it "is not valid without an email with an @" do
-    subject.email = "testtest.com"
-    expect(subject).to_not be_valid
+    user = build(:user, email: 'testtest.com')
+    expect(user).to_not be_valid
   end
 
   it "is not valid without a sufficiently long password" do
-    subject.password = "123"
-    expect(subject).to_not be_valid
+    user = build(:user, password: '123')
+    expect(user).to_not be_valid
   end
   
 end
