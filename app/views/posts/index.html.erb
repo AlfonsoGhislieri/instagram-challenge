@@ -9,12 +9,18 @@
 
   <tbody>
     <% @posts.each do |post| %>
+    <div>
       <tr>
-        <td><%= post.message %></td>
+      <td><%= post.message %></td>
+        <% if post.image.attached? %>
+          <td><%= image_tag(post.image)%></td> 
+        <% end %>
+      
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+    </div>
     <% end %>
   </tbody>
 </table>

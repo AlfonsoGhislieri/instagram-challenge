@@ -7,15 +7,21 @@ RSpec.describe Post, type: :model do
 
   describe 'associations' do
     it { should belong_to(:user) }
+    it { should have_one_attached(:image) }
   end
 
-  it "not valid if post has neither a message or a image" do
-    post = build(:post, message: nil) 
-    expect(post).to_not be_valid
-  end
-
-  it "valid if just message" do
+  it "valid if has both message and image" do
     expect(@post).to be_valid
+  end
+
+  it "valid if has just an image" do
+    @post.message = nil
+    expect(@post).to be_valid
+  end
+
+  it "not valid if just message" do
+    @post.image.purge
+    expect(@post).to_not be_valid
   end
 
   it "valid if message is less than 50 char" do
@@ -27,16 +33,5 @@ RSpec.describe Post, type: :model do
     post = build(:post, message: "#{'a'*51}")
     expect(post).to_not be_valid
   end
-
-  # it "image and message can be attached to a post" do
-  #   post = Post.new(message: "Test")
-  #   post.image.attach(io: File.open("lib/assets/Scooby-Doo_test_picture.png"), 
-  #   filename: "Scooby-Doo_test_picture.png", content_type: "image/png")
-
-  #   expect(post.message).to eq('Test')
-  #   expect(post.image.attached?).to be true
-  #   expect(post.image.filename).to eq("Scooby-Doo_test_picture.png")
-  #   expect(post).to be_valid
-  # end
 
 end

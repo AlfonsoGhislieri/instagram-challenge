@@ -1,4 +1,3 @@
-require 'rails_helper'
 
 FactoryBot.define do
   
@@ -10,5 +9,13 @@ FactoryBot.define do
   factory :post do
     message {"Test post"}
     association :user
+    
+    after(:build) do |post|
+      post.image.attach(
+        io: File.open('spec/images/Scooby-Doo.png'),
+        filename: 'Scooby-Doo.png',
+        content_type: 'image/png')
+    end
   end
+
 end
