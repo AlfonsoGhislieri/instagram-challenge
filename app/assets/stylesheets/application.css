@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+ h1 {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-size: xx-large;
+  font-weight: 500;
+ }
+ 
+ nav.navbar.navbar-light.bg-light {
+   margin-top: -2.5em;
+ }
+
+ a.navbar-brand.align-top:hover{
+   background-color: transparent;
+}
+
+ body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 450;
+ }
