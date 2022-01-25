@@ -1,14 +1,19 @@
 <nav class="navbar navbar-light bg-light">
   
-  <a class="navbar-brand align-top" href="/posts">
+  <a class="navbar-brand align-top " href="/posts">
     <img src="https://eci.ec.europa.eu/012/public/assets/img/instagram.png" width="60" height="60" class="d-inline-block align-top" alt="">
   </a>
-  <img src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Logo.png" width="200" height="110" class="d-inline-block align-top" alt="">
-    <ul class="navbar-nav">
-        <li class="nav-item">
-          <% if user_signed_in? %>
-            <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-secondary rounded"  %>
-          <% end %>
+  <a id="title-img" href="/posts">  
+    <img src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Logo.png" id="title-img"width="200" height="110" class="d-inline-block align-top" alt="">
+  </a>
+    <ul class="navbar-nav d-inline-block">
+      <% if user_signed_in? %>
+        <li class="d-inline-block nav-item"> 
+          <%= link_to 'Create Post', new_post_path, class:"btn" %>
         </li>
+        <li class="d-inline-block nav-item ">
+            <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-secondary rounded"  %>
+        </li>
+        <% end %>
     </ul>
 </nav>

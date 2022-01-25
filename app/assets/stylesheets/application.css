@@ -28,11 +28,28 @@
    background-color: transparent;
 }
 
+a.btn {
+  background-color: transparent;
+}
+
 img.d-inline-block.align-top {
   margin-top: -1em;
+}
+img#title-img.d-inline-block.align-top {
+  margin-top: -1em;
+  margin-left: 3em;
+}
+
+a#title-img {
+  background-color: transparent;
 }
 
  body {
    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
    font-weight: 450;
  }
+
+ul.navbar-nav.d-inline-block {
+  margin-top: -2em;
+}
+    

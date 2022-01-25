@@ -1,24 +1,23 @@
-<%= "You are signed in as #{current_user.email}" if current_user%>
-<%= link_to 'New Post', new_post_path %>
 
 <div class="container">
     <div class="row justify-content-center">
       <% @posts.each do |post| %>
       
-      <div class="col-sm-12 col-lg-7 mb-2">
-        <div class="card">
-         <span class="border-bottom"><h3 class="card-title text-center">User<%= post.user_id%></h3></span>
+      <div class="col-sm-7 col-lg-7 mb-2 ">
+        <div class="card offset-sm-1 w-75">
+         <span class="border-bottom"><h3 class="card-title text-center pt-1">User<%= post.user_id%></h3></span>
          
-          <% if post.image.attached? %>
-            <%= image_tag(post.image, class:"img-fluid")%>
-          <% end %>
+         <div class="card-image text-center">
+            <% if post.image.attached? %>
+              <%= image_tag(post.image, class:"img-fluid")%>
+            <% end %>
+          </div>
 
           <span class="border-top"><div class="card-body">
             <p class="card-text"><%= post.message %></p></span>
             <tr>
-              <td><%= link_to 'Show', post %></td>
               <td><%= link_to 'Edit', edit_post_path(post) %></td>
-              <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           </div>
         </div>

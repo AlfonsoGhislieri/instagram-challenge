@@ -1,13 +1,29 @@
-<p id="notice"><%= notice %></p>
-
-<div id="post">
-  <p>
-    <strong>Message:</strong>
-    <%= @post.message %>
-  </p>
-    <%= image_tag(@post.image) %>
-<div>
 
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<div class="container">
+    <div class="row justify-content-center">      
+      <div class="col-sm-7 col-lg-7 mb-2 ">
+        <div class="card offset-sm-1 w-75">
+         <span class="border-bottom"><h3 class="card-title text-center pt-1">User<%= @post.user_id%></h3></span>
+         
+         <div class="card-image text-center">
+            <% if @post.image.attached? %>
+              <%= image_tag(@post.image, class:"img-fluid")%>
+            <% end %>
+          </div>
+
+          <span class="border-top"><div class="card-body">
+            <p class="card-text"><%= @post.message %></p></span>
+            <tr>
+              <td><%= link_to 'Edit', edit_post_path(@post) %> |</td>
+              <td><%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %> |</td>
+              <td><%= link_to 'Back', posts_path %> </td>
+            </tr>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
