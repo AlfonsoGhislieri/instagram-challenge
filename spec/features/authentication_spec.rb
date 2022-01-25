@@ -2,24 +2,24 @@ require 'rails_helper'
 
 RSpec.feature 'Posts', type: :feature do
   before do
-    sign_up
+    sign_up(email:"test@test.com",password:"123456",password_confirmation:"123456")
   end
 
   context "logged in" do
     scenario "success message when logged in" do
       find(:xpath, '/html/body/nav/ul/li/form/input[2]').click
       find(:xpath, '//*[@id="user_email"]').set("test@test.com")
-      find(:xpath, '//*[@id="user_password"]').set('test123')
+      find(:xpath, '//*[@id="user_password"]').set('123456')
       find(:xpath, '//*[@id="new_user"]/div[4]/input').click
 
       expect(page).to have_content('Signed in successfully.')
-      expect(page).to have_content('You are signed in as test@test.com')
     end
 
     scenario "can go to posts page when logged in" do
       visit("/posts")
-      expect(page).to have_content('You are signed in as test@test.com')
-      expect(page).to have_content('New Post')
+      expect(page).to have_content('Create Post')
+      find(:xpath, '/html/body/nav/ul/li[1]/a').click
+      expect(page).to have_current_path("/posts/new")
     end
   end
 

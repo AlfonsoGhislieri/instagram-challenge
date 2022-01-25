@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.feature 'Posts', type: :feature do
   message_field = '//*[@id="post_message"]'
   image_field = '//*[@id="post_image"]'
-  create_button = '/html/body/form/div[3]/input'
+  create_button = '/html/body/form/section/div/div/div/div/div[2]/div[4]/input'
 
   before do
-    sign_up
+    sign_up(email:"test@test.com",password:"123456",password_confirmation:"123456")
     visit "/posts/new"
   end
 

@@ -1,10 +1,9 @@
 module Helpers
-  def sign_up
-    visit "/"
-    find(:xpath, '/html/body/a[1]').click
-    find(:xpath, '//*[@id="user_email"]').set("test@test.com")
-    find(:xpath, '//*[@id="user_password"]').set("test123")
-    find(:xpath, '//*[@id="user_password_confirmation"]').set("test123")
-    find(:xpath, '//*[@id="new_user"]/div[4]/input').click
+  def sign_up(email:,password:,password_confirmation:)
+    visit "/users/sign_up"
+    find(:xpath, '//*[@id="user_email"]').set(email)
+    find(:xpath, '//*[@id="user_password"]').set(password)
+    find(:xpath, '//*[@id="user_password_confirmation"]').set(password_confirmation)
+    find(:xpath, '//*[@id="new_user"]/div[5]/input').click
   end
 end
