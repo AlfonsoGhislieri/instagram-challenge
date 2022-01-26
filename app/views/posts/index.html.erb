@@ -19,9 +19,27 @@
               <td><%= link_to 'Edit', edit_post_path(post) %></td>
               <td><%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
+
+          <div id='add-comment-section' class="mt-1">
+            <%= form_with(model: [post, post.comments.build]) do |f| %>
+              <div class="form-group">
+                <%= f.text_area :body, class: 'form-control', required: true%>
+              </div>
+              <%= f.submit 'Add comment', class: 'btn btn-primary mt-1' %>
+            <% end %>
+          </div>
+
+            <% post.comments.each_with_index do |comment,index| %>
+              <% if index != (post.comments.length - 1) %>
+                <div id="display-comments" class="card mt-2"> 
+                  <div class="card-text text-center pt-1"> <%= comment.body %></div>
+                  <div class="px-3 pb-1"><strong><%= comment.user_id %></strong></div>
+                </div>
+              <% end %>
+          <% end %>
           </div>
         </div>
-    </div>
+      </div>
     <% end %>
   </div>
 </div>
