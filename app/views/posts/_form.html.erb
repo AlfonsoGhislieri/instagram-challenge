@@ -14,11 +14,9 @@
 
 <section class="ftco-section">
   <div class="container" data-spy="scroll">
-    <div class="row justify-content-center">
+    <div class="row ">
       <div class="col-md-12 col-lg-12">
-        <div class="wrap d-md-flex">
-        <div class="col-sm-4"></div>
-          
+        <div class="wrap d-md-flex justify-content-center">          
           <div class="login-wrap p-4 p-md-5">
             <div class="d-flex">
               <div class="w-100">
@@ -27,7 +25,7 @@
             </div>
 
             <div class="form-group mb-3">
-              <%= form.text_field :message, autofocus: true, placeholder: "Message", class:"form-control mt-2",required: true %>
+              <%= form.text_area :message, autofocus: true, placeholder: "Message", class:"form-control mt-2",required: true %>
             </div>
 
             <div class="form-group mb-3">

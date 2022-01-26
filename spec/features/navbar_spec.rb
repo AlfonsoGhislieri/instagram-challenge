@@ -28,7 +28,7 @@ RSpec.feature "Navbar", type: :feature do
     end
 
     scenario "Instagram home button makes you login or sign up" do
-      visit("/")
+      visit("/posts")
       find(:xpath, '/html/body/nav/a[1]/img').click
       expect(page).to have_content("You need to sign in or sign up before continuing.")
     end

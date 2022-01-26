@@ -1,6 +1,11 @@
 
 FactoryBot.define do
-  
+  factory :comment do
+    body { "MyText" }
+    post_id { 1 }
+    user_id { 1 }
+  end
+
   factory :user do
     email {'test@gmail.com'}
     password {'test123'}
@@ -17,5 +22,4 @@ FactoryBot.define do
         content_type: 'image/png')
     end
   end
-
 end
