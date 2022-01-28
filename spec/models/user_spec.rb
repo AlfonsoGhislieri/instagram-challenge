@@ -33,6 +33,11 @@ RSpec.describe User, type: :model do
     expect(user).to_not be_valid
   end
 
+  it "is not valid without a username" do
+    user = build(:user, username: nil)
+    expect(user).to_not be_valid
+  end
+
   it "is not valid without a unique email" do
     user = build(:user, email: 'test@gmail.com')
     expect(user).to_not be_valid
