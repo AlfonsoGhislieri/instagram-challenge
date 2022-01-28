@@ -25,16 +25,20 @@
               <div class="form-group">
                 <%= f.text_area :body, class: 'form-control', required: true%>
               </div>
-              <%= f.submit 'Add comment', class: 'btn btn-primary mt-1' %>
+              <%= f.submit 'Add comment', class: 'btn btn-primary mt-1 btn-sm' %>
+
             <% end %>
           </div>
 
-            <% post.comments.each_with_index do |comment,index| %>
-              <% if index != (post.comments.length - 1) %>
+            <% post.comments.reverse.each_with_index do |comment,index| %>
+              <% if comment.id != nil %>
                 <div id="display-comments" class="card mt-2"> 
                   <div class="card-text text-center pt-1"> <%= comment.body %></div>
                   <div class="px-3 pb-1"><strong><%= comment.user_id %></strong></div>
+                    <%= link_to 'Edit', edit_post_comment_path(post, comment) %>
+                    <%= link_to 'Delete', [post, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
                 </div>
+             
               <% end %>
           <% end %>
           </div>
