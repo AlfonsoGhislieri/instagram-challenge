@@ -14,6 +14,11 @@ RSpec.describe Post, type: :model do
     expect(@post).to be_valid
   end
 
+  it "has a user saved" do
+    user = User.find(@post.user_id)
+    expect(user).to be_instance_of(User)
+  end
+
   it "valid if has just an image" do
     @post.message = nil
     expect(@post).to be_valid

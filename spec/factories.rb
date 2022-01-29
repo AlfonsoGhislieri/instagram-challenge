@@ -1,5 +1,12 @@
 
 FactoryBot.define do
+  factory :like do
+    association :user
+
+    likeable_type { "Post" }
+    likeable_id { 2 }
+  end
+
   factory :comment do
     body { "MyText" }
     association :user

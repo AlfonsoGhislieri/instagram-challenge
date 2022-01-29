@@ -9,6 +9,11 @@ RSpec.describe User, type: :model do
     it { should have_many(:posts) }
   end
 
+  it "user has username and email" do
+    expect(@user.username).to eq("test")
+    expect(@user.email).to eq("test@gmail.com")
+  end
+
   it "is valid with a valid username and password" do
     expect(@user).to be_valid
   end 
