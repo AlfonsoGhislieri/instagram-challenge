@@ -20,22 +20,21 @@
           <span class="border-top"><div class="card-body">
             <p class="card-text"><%= post.message %></p></span>
 
-            <p>Likes: <%= post.likes.count %></p>
+          <div>Likes: <%= post.likes.count %> </div>
         
           <% if current_user %>
             <% like = current_user.likes.find_by(likeable: post) %>
             <% if like.nil? %>
-              <%= button_to "Like", post_likes_path(post, likeable_type: "Post", likeable_id: post.id), method: :post %>
+              <%= button_to "Like", post_likes_path(post, likeable_type: "Post", likeable_id: post.id), method: :post, class: "btn btn-sm btn-primary"%>
             <% else %>
-              <%= button_to "Unlike", post_like_path(post, like), method: :delete %>
+              <%= button_to "Unlike", post_like_path(post, like), method: :delete, class: "btn btn-sm btn-primary" %>
             <% end %>
           <% end %>
 
-
             <% if current_user && current_user.id == post.user_id %>
               <div class="btn-group">
-                <%= button_to 'Edit', edit_post_path(post),class:"btn btn-primary btn-sm" %>
-                <%= button_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
+                <%= button_to 'Edit', edit_post_path(post), method: :get, class:"btn btn-primary btn-sm" %>
+                <%= button_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
               </div>
             <% end %>
                 
@@ -48,7 +47,7 @@
             <% end %>
           </div>
 
-            <% post.comments.order(created_at: :desc).each do |comment| %>
+            <% post.comments.order(created_at: :asc).each do |comment| %>
               <% if comment.id != nil %>
                 <div id="display-comments" class="card mt-2"> 
                   <div class="card-text text-center pt-1"> <%= comment.body %></div>
@@ -56,7 +55,7 @@
 
                 <% if current_user && current_user.id == comment.user_id %>
                   <div class="btn-group">
-                      <%= button_to 'Edit', edit_post_comment_path(post, comment),class:"btn btn-primary btn-sm" %>
+                      <%= button_to 'Edit', edit_post_comment_path(post, comment), method: :get, class:"btn btn-primary btn-sm" %>
                       <%= button_to 'Delete', [post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
                   </div>
                 <% end %>
