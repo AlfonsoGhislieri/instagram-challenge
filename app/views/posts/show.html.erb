@@ -4,7 +4,7 @@
     <div class="row justify-content-center">      
       <div class="col-sm-7 col-lg-7 mb-2 ">
         <div class="card offset-sm-1 w-75">
-         <span class="border-bottom"><h3 class="card-title text-center pt-1">User<%= @post.user_id%></h3></span>
+         <span class="border-bottom"><h3 class="card-title text-center pt-1"><%= User.find(@post.user_id).username%></h3></span>
          
          <div class="card-image text-center">
             <% if @post.image.attached? %>

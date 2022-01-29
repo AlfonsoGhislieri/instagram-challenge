@@ -1,8 +1,13 @@
 <nav class="navbar navbar-light bg-light">
   
-  <a id="navbar-icon"class="navbar-brand align-top " href="/posts">
-    <img src="https://eci.ec.europa.eu/012/public/assets/img/instagram.png" width="60" height="60" class="d-inline-block align-top" alt="">
-  </a>
+  <div class ="navbar-nav d-inline-block">
+    <a id="navbar-icon"class="navbar-brand align-top " href="/posts">
+      <img src="https://eci.ec.europa.eu/012/public/assets/img/instagram.png" width="60" height="60" class="d-inline-block align-top" alt="">
+    </a>
+    <% if user_signed_in? %>
+      <div id="signed-in-user-text" class="d-inline-block nav-item ml-2"><%= "#{current_user.username}" %></div>
+    <% end %>
+    </div>
   <a id="title-img" href="/posts">  
     <img src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Logo.png" id="title-img"width="200" height="110" class="d-inline-block align-top" alt="">
   </a>
