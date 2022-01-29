@@ -1,10 +1,12 @@
 
 FactoryBot.define do
+  sequence :email do |n|
+    "test#{n}@example.com"
+  end
+
   factory :like do
     association :user
-
-    likeable_type { "Post" }
-    likeable_id { 2 }
+    likeable { build(:post, user: build(:user, email: "test2@gmail.com")) }
   end
 
   factory :comment do
