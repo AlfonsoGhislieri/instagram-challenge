@@ -21,6 +21,15 @@
             <p class="card-text"><%= post.message %></p></span>
 
             <p>Likes: <%= post.likes.count %></p>
+        
+          <% if current_user %>
+            <% like = current_user.likes.find_by(likeable: post) %>
+            <% if like.nil? %>
+              <%= button_to "Like", post_likes_path(post, likeable_type: "Post", likeable_id: post.id), method: :post %>
+            <% else %>
+              <%= button_to "Unlike", post_like_path(post, like), method: :delete %>
+            <% end %>
+          <% end %>
 
 
             <% if current_user && current_user.id == post.user_id %>
