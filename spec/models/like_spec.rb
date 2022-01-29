@@ -34,6 +34,7 @@ RSpec.describe Like, type: :model do
 
   it "raises an error for a duplicate like" do
     like = Like.create(likeable: Post.find(@like.likeable_id), user: User.find(@like.user_id))
-    expect(like).to_not be_valid
+    expect(like.valid?).to be(false)
+    expect(like.errors.full_messages[0]).to eq('User already liked this')
   end
 end
