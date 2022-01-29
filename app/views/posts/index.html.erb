@@ -5,7 +5,11 @@
       
       <div class="col-sm-7 col-lg-7 mb-2 ">
         <div class="card offset-sm-1 w-75">
-         <span class="border-bottom"><h3 class="card-title text-center pt-1"><%= User.find(post.user_id).username %></h3></span>
+          <span class="border-bottom">
+          <div class="row">
+            <h3 class="col-12 card-title mx-2 pt-1"><%= User.find(post.user_id).username %></h3>
+            <p class="col-12 card-title mx-2"> Posted <%= time_ago_in_words(post.created_at)%></p> 
+          </div></span>
          
          <div class="card-image text-center">
             <% if post.image.attached? %>
@@ -15,10 +19,10 @@
 
           <span class="border-top"><div class="card-body">
             <p class="card-text"><%= post.message %></p></span>
-            <tr>
-              <td><%= link_to 'Edit', edit_post_path(post) %></td>
-              <td><%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
+            <div class="btn-group">
+              <%= button_to 'Edit', edit_post_path(post),class:"btn btn-primary btn-sm" %>
+              <%= button_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
+            </div>
 
           <div id='add-comment-section' class="mt-1">
             <%= form_with(model: [post, post.comments.build]) do |f| %>
@@ -35,10 +39,11 @@
                 <div id="display-comments" class="card mt-2"> 
                   <div class="card-text text-center pt-1"> <%= comment.body %></div>
                   <div class="px-3 pb-1"><strong><%= User.find(comment.user_id).username %></strong></div>
-                    <%= link_to 'Edit', edit_post_comment_path(post, comment) %>
-                    <%= link_to 'Delete', [post, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+                <div class="btn-group">
+                    <%= button_to 'Edit', edit_post_comment_path(post, comment),class:"btn btn-primary btn-sm" %>
+                    <%= button_to 'Delete', [post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
+                 </div>
                 </div>
-             
               <% end %>
           <% end %>
           </div>
