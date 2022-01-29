@@ -19,11 +19,17 @@
 
           <span class="border-top"><div class="card-body">
             <p class="card-text"><%= post.message %></p></span>
-            <div class="btn-group">
-              <%= button_to 'Edit', edit_post_path(post),class:"btn btn-primary btn-sm" %>
-              <%= button_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
-            </div>
 
+            <p>Likes: <%= post.likes.count %></p>
+
+
+            <% if current_user && current_user.id == post.user_id %>
+              <div class="btn-group">
+                <%= button_to 'Edit', edit_post_path(post),class:"btn btn-primary btn-sm" %>
+                <%= button_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
+              </div>
+            <% end %>
+                
           <div id='add-comment-section' class="mt-1">
             <%= form_with(model: [post, post.comments.build]) do |f| %>
               <div class="form-group">
@@ -39,10 +45,14 @@
                 <div id="display-comments" class="card mt-2"> 
                   <div class="card-text text-center pt-1"> <%= comment.body %></div>
                   <div class="px-3 pb-1"><strong><%= User.find(comment.user_id).username %></strong></div>
-                <div class="btn-group">
-                    <%= button_to 'Edit', edit_post_comment_path(post, comment),class:"btn btn-primary btn-sm" %>
-                    <%= button_to 'Delete', [post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
-                 </div>
+
+                <% if current_user && current_user.id == comment.user_id %>
+                  <div class="btn-group">
+                      <%= button_to 'Edit', edit_post_comment_path(post, comment),class:"btn btn-primary btn-sm" %>
+                      <%= button_to 'Delete', [post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
+                  </div>
+                <% end %>
+
                 </div>
               <% end %>
           <% end %>
