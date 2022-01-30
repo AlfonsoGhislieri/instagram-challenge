@@ -8,6 +8,7 @@ RSpec.describe Comment, type: :model do
   describe 'associations' do
     it { should belong_to(:user) }
     it { should belong_to(:post) }
+    it { should have_many(:likes) }
   end
 
   it "valid if has both text and linked user id and post id" do
@@ -18,5 +19,4 @@ RSpec.describe Comment, type: :model do
     expect(@comment.user_id).to_not eq(nil)
     expect(@comment.post_id).to_not eq(nil)
   end
-
 end

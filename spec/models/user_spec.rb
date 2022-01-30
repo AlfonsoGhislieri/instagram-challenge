@@ -7,11 +7,19 @@ RSpec.describe User, type: :model do
 
   describe 'associations' do
     it { should have_many(:posts) }
+    it { should have_many(:likes) }
+    it { should have_many(:comments) }
+    it { should have_one_attached(:avatar) }
   end
 
   it "user has username and email" do
     expect(@user.username).to eq("test")
     expect(@user.email).to eq("test@gmail.com")
+  end
+
+  it "user has an avatar" do
+    expect(@user.avatar).to_not eq(nil)
+    expect(@user.avatar.filename).to eq("default_avatar.png")
   end
 
   it "is valid with a valid username and password" do

@@ -19,6 +19,13 @@ FactoryBot.define do
     username {'test'}
     email {'test@gmail.com'}
     password {'test123'}
+
+    after(:build) do |user|
+      user.avatar.attach(
+        io: File.open('spec/images/default_avatar.png'),
+        filename: 'default_avatar.png',
+        content_type: 'image/png')
+    end
   end
 
   factory :post do

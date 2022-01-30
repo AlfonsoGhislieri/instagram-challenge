@@ -5,6 +5,7 @@
       <img src="https://eci.ec.europa.eu/012/public/assets/img/instagram.png" width="60" height="60" class="d-inline-block align-top" alt="">
     </a>
     <% if user_signed_in? %>
+      <%= image_tag(current_user.avatar.variant(resize_to_limit: [50, 50]), class: 'd-inline-block align-top rounded-circle') %>
       <h5 id="signed-in-user-text" class="d-inline-block nav-item ml-2"><%= "#{current_user.username}" %></h5>
     <% end %>
     </div>
