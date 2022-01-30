@@ -1,10 +1,9 @@
-deleteComment = () => {
-  let thingToDelete = document.getElementById("comment-<%=@comment.id%>");
+deletePost = () => {
+  let thingToDelete = document.getElementById("post-<%=@post.id%>");
   thingToDelete.className = "is-success notification is-light has-text-bold alert alert-success"
   thingToDelete.innerHTML = "";
-  thingToDelete.innerText = "Comment deleted";
+  thingToDelete.innerText = "Post deleted";
   thingToDelete.setAttribute("id", "flashmessage")
-  
 }
 
-deleteComment();
+deletePost();

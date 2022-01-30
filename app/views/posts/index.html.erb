@@ -20,16 +20,15 @@
             <% end %>
           </div>
 
-         <% if current_user %>
-            <% like = current_user.likes.find_by(likeable: post) %>
-            <% if like.nil? %>
-              <%= button_to "Like", post_likes_path(post, likeable_type: "Post", likeable_id: post.id), method: :post, class: "btn btn-sm btn-danger"%>
-            <% else %>
-              <%= button_to "Unlike", post_like_path(post, like), method: :delete, class: "btn btn-sm btn-secondary" %>
-            <% end %>
-          <% end %>
-
           <span class="border-top"><div class="card-body">
+            <% if current_user %>
+              <% like = current_user.likes.find_by(likeable: post) %>
+              <% if like.nil? %>
+                <%= button_to "Like", post_likes_path(post, likeable_type: "Post", likeable_id: post.id), method: :post, class: "btn btn-sm btn-danger"%>
+              <% else %>
+                <%= button_to "Unlike", post_like_path(post, like), method: :delete, class: "btn btn-sm btn-secondary" %>
+              <% end %>
+          <% end %>
             <p class="card-text"><strong><%= post.user.username %></strong> <%= post.message %></p></span>
 
           <div><%= post.likes.count %> likes</div>
@@ -37,7 +36,7 @@
             <% if current_user && current_user.id == post.user_id %>
               <div class="d-flex justify-content-center btn-group">
                 <%= button_to 'Edit', edit_post_path(post), method: :get, class:"btn btn-primary btn-sm" %>
-                <%= button_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
+                <%= button_to 'Delete', post_path(post), remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
               </div>
             <% end %>
                 
