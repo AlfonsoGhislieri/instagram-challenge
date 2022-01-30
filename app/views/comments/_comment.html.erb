@@ -1,0 +1,13 @@
+<% @post = Post.find(comment.post_id) %>
+
+<div id="comment-<%=comment.id%>" class="card mt-2"> 
+  <div class="card-text text-center pt-1"> <%= comment.body %></div>
+    <div class="px-3 pb-1"><strong><%= comment.user.username %></strong> - <%= time_ago_in_words(comment.created_at)%> ago </div>
+
+    <% if current_user && current_user.id == comment.user_id %>
+      <div class="btn-group">
+      <%= button_to 'Edit', edit_post_comment_path(@post, comment), method: :get, class:"btn btn-primary btn-sm" %>
+      <%= button_to 'Delete', [@post, comment], remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
+       </div>
+    <% end %>
+</div>

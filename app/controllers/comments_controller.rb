@@ -27,13 +27,13 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     @comment.user_id = current_user.id
 
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to posts_url, notice: "Comment was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+    if @comment.save
+      respond_to do |format|
+      format.js
       end
+    else
+      format.html { render :new, status: :unprocessable_entity }
+      format.json { render json: @comment.errors, status: :unprocessable_entity }
     end
   end
 
@@ -56,8 +56,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Comment was successfully destroyed." }
-      format.json { head :no_content }
+      format.js
     end
   end
 

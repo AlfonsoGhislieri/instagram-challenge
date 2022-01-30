@@ -4,7 +4,7 @@
       <% @posts.reverse.each do |post| %>
       
       <div class="col-sm-7 col-lg-7 mb-2 ">
-        <div class="card offset-sm-1 w-75">
+        <div id="post-<%=post.id%>" class="card offset-sm-1 w-75">
           <span class="border-bottom">
           <div class="row">
             <h3 class="col-12 card-title mx-2 pt-1">
@@ -12,6 +12,7 @@
               <%= post.user.username %></h3>
             <p class="col-12 card-title mx-2"> Posted <%= time_ago_in_words(post.created_at)%> ago</p> 
           </div></span>
+
          
          <div class="card-image text-center">
             <% if post.image.attached? %>
@@ -19,51 +20,54 @@
             <% end %>
           </div>
 
-          <span class="border-top"><div class="card-body">
-            <p class="card-text text-center"><%= post.message %></p></span>
-
-          <div>Likes: <%= post.likes.count %> </div>
-        
-          <% if current_user %>
+         <% if current_user %>
             <% like = current_user.likes.find_by(likeable: post) %>
             <% if like.nil? %>
-              <%= button_to "Like", post_likes_path(post, likeable_type: "Post", likeable_id: post.id), method: :post, class: "btn btn-sm btn-primary"%>
+              <%= button_to "Like", post_likes_path(post, likeable_type: "Post", likeable_id: post.id), method: :post, class: "btn btn-sm btn-danger"%>
             <% else %>
-              <%= button_to "Unlike", post_like_path(post, like), method: :delete, class: "btn btn-sm btn-primary" %>
+              <%= button_to "Unlike", post_like_path(post, like), method: :delete, class: "btn btn-sm btn-secondary" %>
             <% end %>
           <% end %>
 
+          <span class="border-top"><div class="card-body">
+            <p class="card-text"><strong><%= post.user.username %></strong> <%= post.message %></p></span>
+
+          <div><%= post.likes.count %> likes</div>
+
             <% if current_user && current_user.id == post.user_id %>
-              <div class="btn-group">
+              <div class="d-flex justify-content-center btn-group">
                 <%= button_to 'Edit', edit_post_path(post), method: :get, class:"btn btn-primary btn-sm" %>
                 <%= button_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
               </div>
             <% end %>
                 
           <div id='add-comment-section' class="mt-1">
-            <%= form_with(model: [post, post.comments.build]) do |f| %>
-              <div class="form-group">
+            <%= form_with(model: [post, post.comments.build], local: false, remote: true) do |f| %>
+              <div id="add-comment-text-box" class="form-group">
                 <%= f.text_area :body, class: 'form-control', required: true%>
               </div>
               <%= f.submit 'Add comment', class: 'btn btn-primary mt-1 btn-sm' %>
             <% end %>
           </div>
 
+          <div id="comments-box">
             <% post.comments.order(created_at: :asc).each do |comment| %>
               <% if comment.id != nil %>
-                <div id="display-comments" class="card mt-2"> 
+                <div id="comment-<%=comment.id%>" class="card mt-2"> 
                   <div class="card-text text-center pt-1"> <%= comment.body %></div>
                   <div class="px-3 pb-1"><strong><%= comment.user.username %></strong> - <%= time_ago_in_words(comment.created_at)%> ago </div>
 
                 <% if current_user && current_user.id == comment.user_id %>
                   <div class="btn-group">
                       <%= button_to 'Edit', edit_post_comment_path(post, comment), method: :get, class:"btn btn-primary btn-sm" %>
-                      <%= button_to 'Delete', [post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
+                      <%= button_to 'Delete', [post, comment], remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-secondary btn-sm mx-2" %>
                   </div>
                 <% end %>
                 </div>
               <% end %>
           <% end %>
+          </div>
+
           </div>
         </div>
       </div>

@@ -1,0 +1,16 @@
+
+renderComment = () => {
+  let post = document.getElementById("post-<%=@post.id%>");
+  let commentBox = post.querySelector("#comments-box")
+  let commentBoxAddCommentField = post.querySelector("#add-comment-text-box")  
+
+  let newComment = document.createElement("div")
+  newComment.append("<%= escape_javascript render(:partial => @comment )%>");
+  newComment.innerHTML = newComment.innerText;
+  
+
+  commentBox.appendChild(newComment);
+  commentBoxAddCommentField.innerHTML = commentBoxAddCommentField.innerHTML
+}
+renderComment();
+

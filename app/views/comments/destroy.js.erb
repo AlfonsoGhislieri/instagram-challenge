@@ -1,0 +1,7 @@
+deleteComment = () => {
+  let thingToDelete = document.getElementById("comment-<%=@comment.id%>");
+  thingToDelete.innerHTML = "";
+  thingToDelete.innerText = "Comment deleted";
+}
+
+deleteComment();
