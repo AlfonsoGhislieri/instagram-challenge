@@ -14,11 +14,24 @@
  *= require_self
  */
 
+
+ /* general styling */
  h1 {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   font-size: xx-large;
   font-weight: 500;
  }
+
+ body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 450;
+}
+
+html { 
+  overflow-y: scroll; 
+}
+
+/* navbar */
  
  nav.navbar.navbar-light.bg-light {
    margin-top: -2.5em;
@@ -35,6 +48,7 @@ a.btn {
 img.d-inline-block.align-top {
   margin-top: -1em;
 }
+
 img#title-img.d-inline-block.align-top {
   margin-top: -1em;
   margin-left: 2em;
@@ -44,18 +58,15 @@ a#title-img {
   background-color: transparent;
 }
 
- body {
-   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-   font-weight: 450;
- }
-
 ul.navbar-nav.d-inline-block {
   margin-top: -2em;
 }
-    
-html { 
-  overflow-y: scroll; 
+
+#link-to-profile {
+  background-color: transparent;
 }
+    
+/* */ 
 
 div.wrap.d-md-flex.justify-content-center{
   margin-left: -6em;
