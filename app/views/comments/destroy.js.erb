@@ -1,8 +1,16 @@
 deleteComment = () => {
-  let thingToDelete = document.getElementById("comment-<%=@comment.id%>");
-  thingToDelete.className = "is-success notification is-light has-text-bold alert alert-success"
-  thingToDelete.innerHTML = "";
-  thingToDelete.innerText = "Comment deleted";
+  let commentToDelete = document.getElementById("comment-<%=@comment.id%>");
+  commentToDelete.className = "is-success notification is-light has-text-bold alert alert-success text-center offset-3 w-50"
+  commentToDelete.innerHTML = "";
+  commentToDelete.innerText = "Comment deleted";
+  commentToDelete.setAttribute("id", "flashmessage")
+
+
+  setTimeout( () => {
+    let existingFlash = document.getElementById("flashmessage");
+    if (existingFlash) {
+      existingFlash.remove();}
+    }, 1500)
 
 }
 

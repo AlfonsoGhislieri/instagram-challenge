@@ -1,8 +1,16 @@
 deletePost = () => {
-  let thingToDelete = document.getElementById("post-<%=@post.id%>");
-  thingToDelete.className = "is-success notification is-light has-text-bold alert alert-success"
-  thingToDelete.innerHTML = "";
-  thingToDelete.innerText = "Post deleted";
+  let postToDelete = document.getElementById("post-<%=@post.id%>");
+  postToDelete.className = "is-success notification is-light has-text-bold alert alert-success text-center w-50 offset-3"
+  postToDelete.innerHTML = "";
+  postToDelete.innerText = "Post deleted";
+  postToDelete.setAttribute("id", "flashmessage")
+
+  setTimeout( () => {
+    let existingFlash = document.getElementById("flashmessage");
+    if (existingFlash) {
+      existingFlash.remove();}
+    }, 1500)
+
 
 }
 
