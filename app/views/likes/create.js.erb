@@ -1,0 +1,13 @@
+likePost = () => {
+  let post = document.getElementById("post-<%=@post.id%>");
+  let likeButton = post.querySelector(".like-button");
+
+  likeButton.setAttribute("href", "<%=post_like_path(@post, @like)%>");
+  likeButton.setAttribute("data-method", "delete");
+  likeButton.innerText = "Unlike"
+
+  let likeInfo = post.querySelector("#likes");
+  likeInfo.innerHTML = "Likes: <%= @post.likes.count%>"
+}
+
+likePost();

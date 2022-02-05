@@ -19,18 +19,20 @@
             <% end %>
           </div>
 
-          <span class="border-top"><div class="card-body">
-            <% if current_user %>
-              <% like = current_user.likes.find_by(likeable: post) %>
-              <% if like.nil? %>
-                <%= button_to "Like", post_likes_path(post, likeable_type: "Post", likeable_id: post.id), method: :post, class: "btn btn-sm btn-danger"%>
-              <% else %>
-                <%= button_to "Unlike", post_like_path(post, like), method: :delete, class: "btn btn-sm btn-secondary" %>
+          <div class="card-body">
+            <span class="border-top">
+            <div id="like-section">
+                <% if current_user %>
+                  <% like = current_user.likes.find_by(likeable: post) %>
+                  <% if like.nil? %>
+                    <%= link_to "Like", post_likes_path(post, likeable_type: "Post", likeable_id: post.id), remote: true, method: :post, class: "btn btn-sm btn-danger like-button"%>
+                  <% else %>
+                    <%= link_to "Unlike", post_like_path(post, like), remote: true, method: :delete, class: "btn btn-sm btn-danger like-button" %>
+                  <% end %>
               <% end %>
-          <% end %>
-            <p class="card-text"><strong><%= post.user.username %></strong> <%= post.message %></p></span>
-
-          <div><%= post.likes.count %> likes</div>
+                <p class="card-text"><strong><%= post.user.username %></strong> <%= post.message %></p></span>
+              <div id="likes"> <%= post.likes.count %> likes</div>
+            </div>
 
             <% if current_user && current_user.id == post.user_id %>
               <div class="d-flex justify-content-center btn-group">

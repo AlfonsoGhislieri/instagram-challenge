@@ -8,10 +8,16 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-require("packs/deleteFlash")
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+const deleteFlashMessages = () => {
+  let existingFlash = document.getElementById("flashmessage");
+  if (existingFlash) {
+    existingFlash.remove();
+  }
+}
 
+window.deleteFlashMessages = deleteFlashMessages;

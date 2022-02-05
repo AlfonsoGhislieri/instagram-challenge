@@ -5,13 +5,7 @@ deletePost = () => {
   postToDelete.innerText = "Post deleted";
   postToDelete.setAttribute("id", "flashmessage")
 
-  setTimeout( () => {
-    let existingFlash = document.getElementById("flashmessage");
-    if (existingFlash) {
-      existingFlash.remove();}
-    }, 1500)
-
-
+  setTimeout(() => deleteFlashMessages(), 1500)
 }
 
 deletePost();

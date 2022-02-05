@@ -1,20 +1,30 @@
 class LikesController < ApplicationController
 
   def create
-    @like = current_user.likes.new(like_params)
+    p '--------'
+    p '--------'
+    p '--------'
+    p '--------'
+    p params
+    @like = current_user.likes.create(like_params)
+    @post = Post.find(params[:post_id])
 
-    if !@like.save
-      flash[:notice] = @like.errors.full_messages.to_sentence
+    p @like
+
+    respond_to do |format|
+      format.js
     end
 
-    redirect_to posts_path
   end
 
   def destroy
     @like = current_user.likes.find(params[:id])
+    @post = Post.find(params[:post_id])
     @like.destroy
 
-    redirect_to posts_path
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
