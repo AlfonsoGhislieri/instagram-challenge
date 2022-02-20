@@ -1,41 +1,35 @@
-Instagram Challenge
+Instagram 
 ===================
 
-## Instructions
+Instragram clone created using Ruby on Rails, PostgreSQL, Javascript, Bootstrap, HTML, CSS. Javascript was used for DOM manipulation and avoiding refreshing when possible (creating a semi-single page application).
 
-* Feel free to use Google, your notes, books, etc., but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday morning
+Tested using RSpec and Capybara.
 
-## Task
+## Setup
 
-Build Instagram: Simple huh!
+```
+> git clone https://github.com/AlfonsoGhislieri/instagram-challenge.git
+> cd instagram-challenge
+> bundle install
+> bin/rails db:create
+> bin/rails db:migrate
 
-Your challenge is to build Instagram using Rails. You'll need **users** who can post **pictures**, write **comments** on pictures and **like** a picture. Style it like Instagram's website (or more awesome).
-
-Bonus if you can add filters!
-
-## How to start
-
-1. Produce some stories, break them down into tasks, and estimate
-2. Fork this repo, clone, etc
-3. Initialize a new rails project
-
-Remember to proceed in small steps! Getting confused? Make the steps even smaller.
-
-## Code Quality
-
-For linting, you can use the `.rubocop.yml` in this repository (or your own!).
-You'll need these gems:
-
-```ruby
-group :development, :test do
-  gem 'rubocop', '1.20', require: false
-  gem 'rubocop-rails'
-end
+> bin/rails server # Start the server at localhost:3000
 ```
 
-You can also lint Javascript, CSS, and ERB — feel free to research this. These
-will help you to train yourself to produce cleaner code — and will often alert
-you to mistakes or mishaps!
+## Testing
+```
+> bundle exec rspec # Run the tests to ensure it works
+```
+
+## Troubleshooting
+
+If you don't have Node.js installed yet, you might run into this error when running rspec:
+
+```
+ExecJS::RuntimeUnavailable:
+  Could not find a JavaScript runtime. See https://github.com/rails/execjs for a list of available runtimes.
+ ```
+
+Rails requires a Javascript runtime to work. The easiest way is to install Node by running `brew install node` - and then run `bundle exec rspec` again
+
