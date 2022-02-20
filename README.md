@@ -1,9 +1,9 @@
 Instagram 
 ===================
 
-Instragram clone created using Ruby on Rails, PostgreSQL, Javascript, Bootstrap, HTML, CSS. Javascript was used for DOM manipulation and avoiding refreshing when possible (creating a semi-single page application).
+Instragram clone created using [Ruby on Rails](https://rubyonrails.org/), [JavaScript](https://www.javascript.com/), [PostgreSQL](https://www.postgresql.org/), [Bootstrap](https://getbootstrap.com/), [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main) and [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS).. Javascript was used for DOM manipulation and avoiding refreshing when possible (creating a semi-single page application).
 
-Tested using RSpec and Capybara.
+Tested using [RSpec](https://rspec.info/) and [Capybara](https://github.com/teamcapybara/capybara).
 
 ## Setup
 
